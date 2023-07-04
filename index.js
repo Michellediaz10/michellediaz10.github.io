@@ -43,17 +43,24 @@ window.onload = function () {
    * Funcion que cambia la foto en la siguiente posicion
    */
   function pasarFoto() {
-    if (posicionActual >= IMAGENES.length - 1) {
-      posicionActual = 0;
-      current_img = 1;
-    } else {
-      posicionActual= posicionActual+2;
-      current_img= current_img+2;
-    }
+    
     if (window.innerWidth < 1000) {
+      if (posicionActual >= IMAGENES.length - 1) {
+        posicionActual = 0;
+        current_img = 1;
+      } else {
+        posicionActual= posicionActual+2;
+        current_img= current_img+2;
+      }
       renderizarImagenPrincipal(posicionActual);
       renderizarImagenPrincipal(current_img,$imagen2);
     }else{
+      if (posicionActual >= IMAGENES.length - 1) {
+        posicionActual = 0;
+        current_img = 1;
+      } else {
+        posicionActual= posicionActual+1;
+      }
       renderizarImagenPrincipal(posicionActual);
     }
   }
@@ -62,17 +69,23 @@ window.onload = function () {
    * Funcion que cambia la foto en la anterior posicion
    */
   function retrocederFoto() {
-    if (posicionActual <= 0) {
-      posicionActual = IMAGENES.length - 1;
-      current_img = IMAGENES.length - 2;
-    } else {
-      posicionActual=posicionActual-2;
-      current_img=current_img-2;
-    }
+    
     if (window.innerWidth < 1000) {
+      if (posicionActual <= 0) {
+        posicionActual = IMAGENES.length - 1;
+        current_img = IMAGENES.length - 2;
+      } else {
+        posicionActual=posicionActual-2;
+        current_img=current_img-2;
+      }
       renderizarImagenPrincipal(posicionActual);
       renderizarImagenPrincipal(current_img,$imagen2);
     }else{
+      if (posicionActual <= 0) {
+        posicionActual = IMAGENES.length - 1;
+      } else {
+        posicionActual=posicionActual-1;
+      }
       renderizarImagenPrincipal(posicionActual);
     }
   }

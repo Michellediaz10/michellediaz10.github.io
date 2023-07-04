@@ -45,6 +45,7 @@ a.nav-link {
 
 .contenedor-botones {
   position: absolute;
+  padding-bottom: 20px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -61,11 +62,18 @@ a.nav-link {
   }
   .logo{
     display: block;
+    padding: 20px;
   }
   .video {
     height: 300px;
   }
-
+  .pantalla-dividida {
+    display: block;
+  }
+  #imagen2,#imagen{
+    margin-top: 40px;
+    padding: 20px;
+  }
   .izquierda,
   .derecha {
     width: 100%;
