@@ -63,6 +63,7 @@ window.onload = function () {
       }
       renderizarImagenPrincipal(posicionActual);
     }
+      actualizarMenu(posicionActual +1);
   }
 
   /**
@@ -88,6 +89,7 @@ window.onload = function () {
       }
       renderizarImagenPrincipal(posicionActual);
     }
+    actualizarMenu(posicionActual +1);
   }
 
   /**
@@ -180,5 +182,14 @@ window.onload = function () {
     for (let i = 0; i < nav_links.length; i++) {
       nav_links[i].classList.remove("active")
     }
+  }
+  function actualizarMenu(posicionActual){
+   quitarElementoActivo()
+   for (let i = 0; i < nav_links.length; i++) {
+    if (posicionActual == i){
+      nav_links[i].classList.add("active")
+    }
+    
+  }
   }
 };
