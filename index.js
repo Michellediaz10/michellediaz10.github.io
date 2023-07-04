@@ -35,8 +35,8 @@ window.onload = function () {
   let $botonRetroceder = document.querySelector("#retroceder");
   let $botonAvanzar = document.querySelector("#avanzar");
   let $imagen = document.querySelector("#imagen");
-  let intervalo;
-
+  let $imagen2 = document.querySelector("#imagen2");
+  let current_img = 1;
   // Funciones
 
   /**
@@ -45,14 +45,16 @@ window.onload = function () {
   function pasarFoto() {
     if (posicionActual >= IMAGENES.length - 1) {
       posicionActual = 0;
+      current_img = 1;
     } else {
-      posicionActual++;
+      posicionActual= posicionActual+2;
+      current_img= current_img+2;
     }
-
-    if (IMAGENES[posicionActual].match(/\.png/i)) {
-      renderizarImagen();
-    } else {
-      renderizarVideo();
+    if (window.innerWidth < 1000) {
+      renderizarImagenPrincipal(posicionActual);
+      renderizarImagenPrincipal(current_img,$imagen2);
+    }else{
+      renderizarImagenPrincipal(posicionActual);
     }
   }
 
@@ -62,32 +64,35 @@ window.onload = function () {
   function retrocederFoto() {
     if (posicionActual <= 0) {
       posicionActual = IMAGENES.length - 1;
+      current_img = IMAGENES.length - 2;
     } else {
-      posicionActual--;
+      posicionActual=posicionActual-2;
+      current_img=current_img-2;
     }
-    if (IMAGENES[posicionActual].match(/\.png/i)) {
-      renderizarImagen();
-    } else {
-      renderizarVideo();
+    if (window.innerWidth < 1000) {
+      renderizarImagenPrincipal(posicionActual);
+      renderizarImagenPrincipal(current_img,$imagen2);
+    }else{
+      renderizarImagenPrincipal(posicionActual);
     }
   }
 
   /**
    * Funcion que actualiza la imagen de imagen dependiendo de posicionActual
    */
-  function renderizarImagen() {
+  function renderizarImagen($posicion, $imagen) {
     //indentificar cuales son imagenes
     $temp_img = document.createElement("img");
     $temp_img.style.width = "100%";
-    $temp_img.src = IMAGENES[posicionActual];
+    $temp_img.src = IMAGENES[$posicion];
 
     $imagen.innerHTML = "";
     $imagen.appendChild($temp_img);
-    if(posicionActual == 18){
+    if($posicion == 18){
       let temp_html = "<div class='position-relative'><p class='position-absolute end-0'>Conoce los requisitos para obtener el High School Diploma haciendo clic <a href='https://8656972.fs1.hubspotusercontent-na1.net/hubfs/8656972/Comunicado%20pasos%20para%20ver%20registro%20dpto%20florida/GENUINE%20REQUISITOS%20HIGH%20SCHOOL%20TF.pdf' class='oval-button px-3' target='_blank'>Aqui<a></p></div>";
       $imagen.innerHTML+=temp_html;
     }
-    if(posicionActual == 26){
+    if($posicion == 26){
       let temp_html = "<div class='position-relative'><p class='position-absolute end-0'>Conoce los costos para otros países haciendo clic <a href='https://drive.google.com/file/d/1gej_OTZtckdYxYL9_ty-iVx0_39qDFv9/view' class='oval-button px-3' target='_blank'>Aqui<a></p></div><br>";
       $imagen.innerHTML+=temp_html;
       let temp_html2 = "<div class='position-relative'><p class='position-absolute end-0'>Comienza ahora tu proceso de admisión en nuestro colegio haciendo clic <a href='https://almahub.co/admisiones' class='oval-button px-3' target='_blank'>Aqui<a></p></div>";
@@ -95,22 +100,33 @@ window.onload = function () {
     }
   }
 
-  function renderizarVideo(url) {
+  function renderizarImagenPrincipal(
+    $posicion, 
+    imagen = $imagen
+  ) {
+    if (IMAGENES[$posicion].match(/\.png/i)) {
+      renderizarImagen($posicion, imagen);
+    } else {
+      renderizarVideo($posicion, imagen);
+    }
+  }
+
+  function renderizarVideo($posicion, $imagen) {
+    $imagen.innerHTML = "";
     var link =
-      "https://www.youtube-nocookie.com/embed/" + IMAGENES[posicionActual];
+      "https://www.youtube-nocookie.com/embed/" + IMAGENES[$posicion];
     var iframe = document.createElement("iframe");
     //iframe.class = "video"
     iframe.frameBorder = 0;
     iframe.width = "75%";
     iframe.height = "450px";
-    iframe.style = "position: absolute; left: 13%; margin-top: 33px;";
+    iframe.style = "position: relative; left: 13%; margin-top: 33px;";
     iframe.id = "randomid";
-    iframe.allow =
-      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-    iframe.allowFullscreen;
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true; 
     iframe.setAttribute("src", link);
     iframe.setAttribute("class", "video");
-    $imagen.innerHTML = "";
+    
     $imagen.appendChild(iframe);
   }
   /**
@@ -121,7 +137,13 @@ window.onload = function () {
   $botonAvanzar.addEventListener("click", pasarFoto);
   $botonRetroceder.addEventListener("click", retrocederFoto);
   // Iniciar
-  renderizarImagen();
+  if (window.innerWidth < 1000) {
+    renderizarImagenPrincipal(posicionActual);
+    renderizarImagenPrincipal(current_img,$imagen2);
+  }else{
+    renderizarImagenPrincipal(posicionActual);
+  }
+
 
   let nav_links = document.getElementsByClassName("nav-link");
 
@@ -130,10 +152,11 @@ window.onload = function () {
     nav_links[i].addEventListener("click", function (e) {
       quitarElementoActivo()
       posicionActual = nav_links[i].getAttribute('data-posicion');
-      if (IMAGENES[posicionActual].match(/\.png/i)) {
-        renderizarImagen();
-      } else {
-        renderizarVideo();
+      if (window.innerWidth < 1000) {
+        renderizarImagenPrincipal(posicionActual);
+        renderizarImagenPrincipal(current_img,$imagen2);
+      }else{
+        renderizarImagenPrincipal(posicionActual);
       }
       nav_links[i].classList.add("active")
     });

@@ -46,17 +46,6 @@ a.nav-link{
 }
 
 @media screen and (max-width: 768px) {
-    /*.pantalla-dividida {
-        position: relative;
-    }
-    .izquierda,
-    .derecha {
-        position: absolute;
-       top: 10;
-       left: 10;
-    }*/
-        
-         /* Cambia la dirección de la división en pantallas pequeñas */
     
     .oval-button {
         width: 100%;
