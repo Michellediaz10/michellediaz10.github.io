@@ -89,13 +89,13 @@ window.onload = function () {
     $imagen.innerHTML = "";
     $imagen.appendChild($temp_img);
     if($posicion == 18){
-      let temp_html = "<div class='position-relative'><p class='position-absolute end-0'>Conoce los requisitos para obtener el High School Diploma haciendo clic <a href='https://8656972.fs1.hubspotusercontent-na1.net/hubfs/8656972/Comunicado%20pasos%20para%20ver%20registro%20dpto%20florida/GENUINE%20REQUISITOS%20HIGH%20SCHOOL%20TF.pdf' class='oval-button px-3' target='_blank'>Aqui<a></p></div>";
+      let temp_html = "<div class='position-relative'><p>Conoce los requisitos para obtener el High School Diploma haciendo clic <a href='https://8656972.fs1.hubspotusercontent-na1.net/hubfs/8656972/Comunicado%20pasos%20para%20ver%20registro%20dpto%20florida/GENUINE%20REQUISITOS%20HIGH%20SCHOOL%20TF.pdf' class='oval-button px-3' target='_blank'>Aqui<a></p></div>";
       $imagen.innerHTML+=temp_html;
     }
     if($posicion == 26){
-      let temp_html = "<div class='position-relative'><p class='position-absolute end-0'>Conoce los costos para otros países haciendo clic <a href='https://drive.google.com/file/d/1gej_OTZtckdYxYL9_ty-iVx0_39qDFv9/view' class='oval-button px-3' target='_blank'>Aqui<a></p></div><br>";
+      let temp_html = "<div class='position-relative'><p>Conoce los costos para otros países haciendo clic <a href='https://drive.google.com/file/d/1gej_OTZtckdYxYL9_ty-iVx0_39qDFv9/view' class='oval-button px-3' target='_blank'>Aqui<a></p></div><br>";
       $imagen.innerHTML+=temp_html;
-      let temp_html2 = "<div class='position-relative'><p class='position-absolute end-0'>Comienza ahora tu proceso de admisión en nuestro colegio haciendo clic <a href='https://almahub.co/admisiones' class='oval-button px-3' target='_blank'>Aqui<a></p></div>";
+      let temp_html2 = "<div class='position-relative'><p>Comienza ahora tu proceso de admisión en nuestro colegio haciendo clic <a href='https://almahub.co/admisiones' class='oval-button px-3' target='_blank'>Aqui<a></p></div>";
       $imagen.innerHTML+=temp_html2;
     }
   }

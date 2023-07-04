@@ -1,138 +1,150 @@
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  background-image: url("fondo.png") !important;
+  
+}
+.logo {
+  display: none;
 }
 ul {
-    list-style-type: none;
-    }
-
-a.nav-link.active{
-    color:#fffefe !important;
-    background-color: #FF004A !important;
-
+  list-style-type: none;
 }
-a.nav-link{
-    color:#FF004A!important;
 
+a.nav-link.active {
+  color: #fffefe !important;
+  background-color: #ff004a !important;
+}
+a.nav-link {
+  color: #ff004a !important;
 }
 .oval-button {
-    width: 100px;
-    height: 30px;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  background-color: #ff004a !important;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.izquierda {
+/* background-color: white; */
+}
+
+.pantalla-dividida {
+  display: flex;
+}
+.derecha {
+  /* background-color: white; */
+  flex: 1;
+  position: relative;
+  height: auto;
+}
+
+.contenedor-botones {
+  position: absolute;
+}
+
+@media screen and (max-width: 768px) {
+  .oval-button {
+    width: 100%;
+    height: 50px;
     border-radius: 20px;
-    background-color: #FF004A !important;
+    background-color: #ff004a !important;
     color: #fff;
     border: none;
     outline: none;
     cursor: pointer;
+    margin: 5px;
+  }
+  .logo{
+    display: block;
+  }
+  .video {
+    height: 300px;
   }
 
-.izquierda {
-    background-color:white;
-}
+  .izquierda,
+  .derecha {
+    width: 100%;
+    flex-basis: auto;
+  }
 
-.pantalla-dividida {
-    display: flex;
-}
-.derecha {
-    background-color:white;
-    flex: 1;   
-    position: relative;
-    height: auto;
-}
-
-.contenedor-botones{
+  .contenedor-botones {
     position: absolute;
-    bottom: 0;
-}
-
-@media screen and (max-width: 768px) {
-    
-    .oval-button {
-        width: 100%;
-        height: 50px;
-        border-radius: 20px;
-        background-color: #FF004A !important;
-        color: #fff;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        margin: 5px;
-      }
-      .video{
-        height: 300px;
-      }
-
-    .izquierda, .derecha {
-        width: 100%;
-        flex-basis: auto;
-    }
-        
-    .contenedor-botones{
-        position: absolute;
-        bottom: 0;
-        width: 97%;
-    }
-    .opciones {
-        position: absolute;
-    }
+    width: 97%;
+  }
+  .opciones {
+    position: absolute;
+  }
+  header {
+    position: fixed;
+    top: 10px;
+    left: 100xpx;
+    right: 0;
+    background-color: #ffffff;
+    padding: 10px;
+    z-index: 999;
+  }
+  header img {
+    width: 100px; /* Ajusta el ancho del logotipo según tus necesidades */
+  }
 }
 
 @media screen and (max-width: 400px) {
-    .pantalla-dividida {
-        flex-direction: column; /* Cambia la dirección de la división en pantallas pequeñas */
-    }
-    .pantalla-dividida:nth-child(2) {
-        flex-direction: column-reverse; /* Cambia la dirección de la división en pantallas pequeñas */
+  .pantalla-dividida {
+    flex-direction: column; /* Cambia la dirección de la división en pantallas pequeñas */
+  }
+  .pantalla-dividida:nth-child(2) {
+    flex-direction: column-reverse; /* Cambia la dirección de la división en pantallas pequeñas */
+  }
+  .oval-button {
+    width: 100%;
+    height: 50px;
+    border-radius: 20px;
+    background-color: #ff004a !important;
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 5px;
+  }
+  .video {
+    height: 300px;
+  }
 
-    }
-    .oval-button {
-        width: 100%;
-        height: 50px;
-        border-radius: 20px;
-        background-color: #FF004A !important;
-        color: #fff;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        margin: 5px;
-      }
-      .video{
-        height: 300px;
-      }
+  .izquierda,
+  .derecha {
+    width: 100%;
+    flex-basis: auto;
+  }
 
-    .izquierda, .derecha {
-        width: 100%;
-        flex-basis: auto;
-    }
+  .contenedor-botones {
+    position: absolute;
+    width: 97%;
+  }
+  #imagen {
+    position: relative;
+  }
 
-    .contenedor-botones{
-        position: absolute;
-        bottom: 0;
-        width: 97%;
-    } 
-    #imagen {
-        position: relative;
-      }
-      
-      .boton-enlace {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100px;
-        height: 40px;
-        background-color: #FF004A; /* Color de fondo del botón */
-        color: #ffffff; /* Color de texto del botón */
-        text-align: center;
-        line-height: 40px;
-        text-decoration: none;
-      }
-      .boton-enlace {
-        /* ... otros estilos ... */
-        background-size: cover; /* Ajustar la imagen de fondo al tamaño del botón */
-        background-position: center; /* Centrar la imagen de fondo */
-      }
-            
+  .boton-enlace {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 40px;
+    background-color: #ff004a; /* Color de fondo del botón */
+    color: #ffffff; /* Color de texto del botón */
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+  }
+  .boton-enlace {
+    /* ... otros estilos ... */
+    background-size: cover; /* Ajustar la imagen de fondo al tamaño del botón */
+    background-position: center; /* Centrar la imagen de fondo */
+  }
 }
-
-
