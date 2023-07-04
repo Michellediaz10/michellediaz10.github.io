@@ -119,11 +119,6 @@ a.nav-link {
     width: 100%;
   
   }
-
-  .contenedor-botones {
-    position: absolute;
-    width: 97%;
-  }
   .opciones {
     position: absolute;
   }
@@ -167,11 +162,6 @@ a.nav-link {
   .derecha {
     width: 100%;
     flex-basis: auto;
-  }
-
-  .contenedor-botones {
-    position: absolute;
-    width: 97%;
   }
   #imagen {
     position: relative;
