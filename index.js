@@ -4,8 +4,8 @@ function showModal(elemento) {
   let modal = document.getElementById("modalVideo");
   modal.classList.remove("hidden");
 }
-function closeModal() {
-  let modal = document.getElementById("modalVideo");
+function closeModal(elemento="modalVideo") {
+  let modal = document.getElementById(elemento);
   modal.classList.add("hidden");
 }
 function renderizarVideo($imagen) {
@@ -30,3 +30,7 @@ function renderizarVideo($imagen) {
   iframe.setAttribute("class", "video");
   bodyModal.appendChild(iframe);
 }
+function closeMenu(){
+  let menu = document.getElementById("menu")
+  menu.style.display = "none"
+} 
