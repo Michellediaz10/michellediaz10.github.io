@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="text/javascript" src="./index.js"></script>
+    
   </head>
   <style>
     * {
       font-family: "Outfit", sans-serif !important;
     }
+    p, span,
+    h1,h2,h3,h4,h5, li {
+      font-family: "Outfit", sans-serif !important;
+    }
     .nav-item.active {
       background-color: #D5ADFB; width: 100%; border-radius: 8px;
+      padding-top: 3px;
+      padding-bottom: 3px;
     }
     .nav-item>.nav-link{
       padding-left: 15px; 
-
     }
   </style>
   <body class="bg-[#EFEFEF] p-2 relative">
@@ -23,7 +29,7 @@
       <button type="button" class="close text-white font-bold" style="position:absolute; top:16px; right:16px" aria-label="Close" onclick="closeModal()">
         X
       </button>
-      <div class="rounded-xl position-fixed overflow-auto animate__animated animate__fast max-h-[88vh] relative top-10" style="z-index:20;">
+      <div class="rounded-xl position-fixed overflow-auto animate__animated animate__fast max-h-[88vh] relative top-10" style="z-index:60;">
         <div>
           <div id="contentModal" class="py-2">
             
@@ -32,344 +38,365 @@
         </div>
       </div>
     </div>
+    <div class="w-64 flex bg-white rounded-lg justify-between p-3 fixed right-4 top-5 z-10 hidden" id="menu-inicial">
+      <svg class="my-auto ml-2" xmlns="http://www.w3.org/2000/svg" width="23" height="15" viewBox="0 0 23 15" fill="none" onclick="showMenu()">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.40625C0 0.6296 0.6296 0 1.40625 0H21.0938C21.8704 0 22.5 0.6296 22.5 1.40625C22.5 2.1829 21.8704 2.8125 21.0938 2.8125H1.40625C0.6296 2.8125 0 2.1829 0 1.40625ZM0 7.5C0 6.72335 0.6296 6.09375 1.40625 6.09375H21.0938C21.8704 6.09375 22.5 6.72335 22.5 7.5C22.5 8.27665 21.8704 8.90625 21.0938 8.90625H1.40625C0.6296 8.90625 0 8.27665 0 7.5ZM0 13.5938C0 12.8171 0.6296 12.1875 1.40625 12.1875H21.0938C21.8704 12.1875 22.5 12.8171 22.5 13.5938C22.5 14.3704 21.8704 15 21.0938 15H1.40625C0.6296 15 0 14.3704 0 13.5938Z" fill="#050831"/>
+      </svg>
+      <svg width="70" height="46" viewBox="0 0 70 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.6231 0H63.4651C67.0725 0 70 2.92751 70 6.53485V38.7082C70 42.3155 67.0725 45.243 63.4651 45.243H22.6231C10.1357 45.2463 0 35.1073 0 22.6231C0 10.1357 10.1357 0 22.6231 0Z" fill="white"/>
+        <path d="M35.5204 22.6199V31.6561C35.5204 32.4563 35.2179 33.2272 34.6715 33.816C31.6496 37.0623 27.4145 38.9066 22.9777 38.9066H22.3271C13.5088 38.9066 6.35919 31.757 6.35919 22.9387V22.3044C6.35919 13.4861 13.5088 6.33643 22.3271 6.33643H22.9777C26.1101 6.33643 29.171 7.26022 31.783 8.98745C32.5864 9.53066 33.0939 10.4122 33.1622 11.3782C33.2305 12.3443 32.8499 13.2876 32.131 13.9382C31.0446 14.914 29.4345 15.0311 28.2179 14.2212C26.6566 13.2096 24.8383 12.6696 22.9777 12.6696H22.3271C17.0088 12.6696 12.6956 16.9828 12.6956 22.3011V22.9354C12.6956 28.2537 17.0088 32.5669 22.3271 32.5669H22.9777C25.2481 32.5767 27.4503 31.7732 29.1808 30.303V25.7848H25.8759C24.1259 25.7848 22.7077 24.3666 22.7077 22.6166C22.7077 20.8666 24.1259 19.4484 25.8759 19.4484H32.349C34.099 19.4484 35.5172 20.8666 35.5172 22.6166L35.5204 22.6199Z" fill="#050831"/>
+        <path d="M44.0656 6.33642C42.3158 6.33642 40.8973 7.75488 40.8973 9.50463C40.8973 11.2544 42.3158 12.6729 44.0656 12.6729L60.4726 12.6729C62.2224 12.6729 63.6408 11.2544 63.6408 9.50463C63.6408 7.75488 62.2224 6.33642 60.4726 6.33642L44.0656 6.33642Z" fill="#D5E6F7"/>
+        <path d="M44.0656 19.4549C42.3158 19.4549 40.8973 20.8734 40.8973 22.6231C40.8973 24.3729 42.3158 25.7914 44.0656 25.7914H60.4726C62.2224 25.7914 63.6408 24.3729 63.6408 22.6231C63.6408 20.8734 62.2224 19.4549 60.4726 19.4549H44.0656Z" fill="#D5ADFB"/>
+        <path d="M44.0656 32.5734C42.3158 32.5734 40.8973 33.9919 40.8973 35.7416C40.8973 37.4914 42.3158 38.9099 44.0656 38.9099H60.4726C62.2224 38.9099 63.6408 37.4914 63.6408 35.7416C63.6408 33.9919 62.2224 32.5734 60.4726 32.5734H44.0656Z" fill="#F90052"/>
+        </svg>
+    </div>
+    <div class="w-auto flex  rounded-lg justify-between p-3 fixed right-5 bottom-7 z-10 hidden" id="sliders">
+      <button type="button" class="bg-[#D5ADFB] px-5 py-2 rounded-l-lg" onclick="previousStep()">&lt;</button>
+      <button type="button" class="bg-[#D5ADFB] px-5 py-2 rounded-r-lg" onclick="nextStep()">&gt;</button>
+    </div>
     <div class="flex">
-      <div>
-      <section
-        style="
-          background-image: url(img/imagen1.png);
-          background-size: cover;
-          background-position-x: 90%;"
-        class="p-2 rounded-lg"
-      >
-        <div>
-          <div class="rounded-lg w-full md:w-96">
-            <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] p-6">
-              <h1 class="text-[#133072] text-xl font-semibold">
-                Estás a punto de entrar al universo de la
-                <span class="text-white bg-[#133072]">educación digital</span>
-              </h1>
-            </div>
-            <div class="bg-white p-4 flex justify-center rounded-b-lg">
-              <img src="img/LOGO_GENUINE.svg" width="200px" class="mt-8" />
-            </div>
-          </div>
-        </div>
-        <div class="h-[350px]"></div>
-        <div class="flex justify-center">
-          <a
-            href="https://studyatgenuine.com/"
-            class="text-white font-bold"
-            target="_blank"
-          >
-            studyatgenuine.com</a
-          >
-        </div>
-      </section>
-      <section
-        class="bg-gradient-to-t from-white to-[#D5E6F7] p-2 rounded-lg mt-6"
-      >
-        <div class="bg-[#D5E6F7] p-6 mt-4 rounded-lg">
-          <h1 class="text-[#133072] text-xl font-semibold">
-            Nuestra misión en el mundo y lo que soñamos para tus hijos
-          </h1>
-        </div>
-
-        <div class="p-2">
-          <iframe
-            width="100%"
-            height="200"
-            src="https://www.youtube.com/embed/0IlUVfWThdo"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="border-4 border-[#133072] rounded-lg p-4">
-          <img src="img/vision.png" />
-          <h1 class="text-[#133072] text-xl font-semibold">Nuestra visión</h1>
-          <p class="text-[#133072] leading-4">
-            Queremos educar a miles de niños y jóvenes con los más altos
-            estándares de calidad y pertinencia para que
-            <span class="font-semibold">descubran su felicidad </span> y que a
-            partir de sus competencias, sean agentes de cambio en sus regiones por
-            medio de
-            <span class="font-semibold"> la tecnología, la innovación</span> y el
-            <span class="font-semibold">emprendimiento.</span>
-          </p>
-        </div>
-        <div class="border-4 border-[#133072] rounded-lg p-4 mt-4">
-          <img src="img/mision.png" />
-          <h1 class="text-[#133072] text-xl font-semibold">Nuestra misión</h1>
-          <p class="text-[#133072] leading-4">
-            <span class="font-semibold"> Educar, empoderar y conectar </span> a
-            nuestros estudiantes mediante experiencias de aprendizaje remoto que
-            trasciendan las fronteras geográficas e idiomáticas, para inspirarlos
-            a transformar el mundo a través de
-            <span class="font-semibold"
-              >la tecnología, la innovación y el emprendimiento.</span
-            >
-          </p>
-        </div>
-        <img src="img/jet-pack.png" />
-      </section>
-      <section>
-        <div class="bg-white rounded-lg mt-4">
-          <div class="p-4">
-            <h1 class="text-[#133072] text-xl font-semibold">¿Quiénes somos?</h1>
-            <p class="text-[#133072] leading-4">
-              Somos un colegio virtual privado estadounidense constituido y
-              registrado en el estado de
-              <span class="font-semibold">La Florida con el código 8822.</span>
-            </p>
-            <h3 class="text-[#133072] text-center font-semibold mt-6">
-              Consulta el registro legal aquí
-            </h3>
-            <a href="https://studyatgenuine.com/registro-legal/" target="_blank"
-              class="bg-[#133072] rounded-lg px-6 py-3 flex mx-auto mb-6 mt-2 w-40 text-white font-bold text-md text-center">
-              Registro legal
-          </a>
-            <div class="bg-[#D5ADFB] py-3 rounded-lg">
-              <h3
-                class="text-center text-[#133072] font-semibold px-10 leading-5"
-              >
-                Mira como encontrar el registro legal de Genuine
-              </h3>
-              <br />
-              <svg
-              onclick="showModal(this)" data-video="r0HVCFzrJnU"
-                class="flex mx-auto"
-                width="41"
-                height="40"
-                viewBox="0 0 41 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M20.5 0C9.47212 0 0.5 8.97212 0.5 20C0.5 31.0279 9.47212 40 20.5 40C31.5279 40 40.5 31.0279 40.5 20C40.5 8.97212 31.5279 0 20.5 0ZM27.6894 20.8942L16.6846 27.5423C16.5269 27.6368 16.3468 27.6876 16.163 27.6896C15.9791 27.6916 15.798 27.6446 15.6383 27.5535C15.4786 27.4624 15.346 27.3304 15.2541 27.1711C15.1622 27.0118 15.1143 26.831 15.1154 26.6471V13.3529C15.1143 13.169 15.1622 12.9882 15.2541 12.8289C15.346 12.6696 15.4786 12.5376 15.6383 12.4465C15.798 12.3554 15.9791 12.3084 16.163 12.3104C16.3468 12.3124 16.5269 12.3632 16.6846 12.4577L27.6894 19.1058C27.8428 19.1992 27.9696 19.3306 28.0576 19.4872C28.1455 19.6438 28.1917 19.8204 28.1917 20C28.1917 20.1796 28.1455 20.3562 28.0576 20.5128C27.9696 20.6694 27.8428 20.8008 27.6894 20.8942Z"
-                  fill="white"
-                />
-              </svg>
-            </div>
-          </div>
+      <div class="w-full">
+        <section
+          style="
+            background-image: url(img/imagen1.png);
+            background-size: cover;
+            background-position-x: 90%;
+            background-position-y: 30%;"
+          class="p-2 rounded-lg h-[95vh] relative section-container"
+        >
           <div>
-            <img class="mt-4" src="img/imagen_2.png" width="100%" />
-          </div>
-        </div>
-      </section>
-      <section>
-        <div class="bg-white rounded-lg mt-4">
-          <div class="px-10">
-            <h1 class="text-[#133072] text-xl font-semibold p-4">
-              Somos <br />
-              del mundo
-            </h1>
-            <div class="border-4 border-[#F90052] p-2 mx-6 rounded-lg">
-              <h1 class="text-[#F90052] text-xl font-semibold text-center">
-                <span class="text-3xl"> +350 </span> <br />
-                Estudiantes
-              </h1>
-            </div>
-            <div class="border-4 border-[#D5ADFB] p-2 mt-4 mx-6 rounded-lg">
-              <h1 class="text-[#D5ADFB] text-xl font-semibold text-center">
-                <span class="text-3xl"> 28 </span> <br />
-                Staff
-              </h1>
-            </div>
-            <div class="border-4 border-[#133072] p-2 mt-4 mx-6 rounded-lg">
-              <h1 class="text-[#133072] text-xl font-semibold text-center">
-                <span class="text-3xl"> 44<br /> </span>
-                Profesores
-              </h1>
-            </div>
-          </div>
-          <div>
-            <img src="img/Mapa.png" />
-          </div>
-          <div class="bg-[#F90052] p-4">
-            <p class="text-white leading-5 font-bold">
-              Colombia, Ecuador, Perú, México, Panamá, Costa Rica, Chile,
-              Argentina, Estados Unidos, Emiratos Árabes, Brasil, República
-              Dominicana, Irlanda, Canadá, España, Portugal, China, Italia.
-            </p>
-          </div>
-          <div class="bg-[#D5ADFB] p-4">
-            <p class="text-white leading-5 font-bold">
-              Estados Unidos, Colombia, Perú, Brasil, Chile, México, Venezuela.
-            </p>
-          </div>
-          <div class="bg-[#133072] p-4 rounded-b-lg">
-            <p class="text-white leading-5 font-bold">
-              Colombia, Sudáfrica, Filipinas, Chile, México, Singapur.
-            </p>
-          </div>
-        </div>
-      </section>
-      <section class="bg-white rounded-lg">
-        <img class="mt-2" src="img/imagen_3.png" width="100%" />
-        <div class="p-6">
-          <h1 class="text-[#133072] text-2xl font-semibold">
-            Nuestra propuesta <br />
-            pedagógica
-          </h1>
-          <br />
-          <h3 class="text-[#133072]">
-            Se fundamenta en
-            <span class="font-semibold"> tres puntos fuertes:</span>
-          </h3>
-          <p class="text-[#133072] p-2">
-            1. Enseñanza para la comprensión -
-            <span class="font-semibold"> EPC </span>
-          </p>
-
-          <p class="text-[#133072] p-2">
-            2. Aprendizaje significativo a través de la gamificación y
-            ludificación. Logramos que nuestros maestros conecten con los
-            estudiantes y enseñen a través de nuestra
-            <span class="font-semibold">
-              Metodología E: Emocionar, enganchar y elevar
-            </span>
-            el conocimiento.
-          </p>
-          <p class="text-[#133072] p-2">
-            3. Formación de una
-            <span class="font-semibold"> cultura emprendedora </span> donde
-            encuentren problemas y generen ideas. Conocen, ejecutan, prueban e
-            iteran soluciones desde sus habilidades y pasiones.
-          </p>
-        </div>
-      </section>
-      <section class="mt-4 bg-white rounded-lg">
-        <img src="img/imagen_4.png" width="100%" />
-        <div class="p-6">
-          <img class="mt-2" src="img/imagen_5.png" />
-          <h1 class="text-[#133072] text-2xl font-semibold mt-2">
-            Emprendimiento
-          </h1>
-          <p class="text-[#133072] mt-2">
-            A través de metodologías ágiles, formamos estudiantes con un
-            <span class="font-semibold">espíritu emprendedor,</span> con capacidad
-            de dar soluciones de base tecnológica a problemáticas reales.
-          </p>
-          <p class="text-[#133072] mt-2">
-            Fomentamos la expresión oral, la confianza en sí mismos, así como
-            contenidos en:
-          </p>
-          <div>
-            <div class="rounded-lg">
+            <div class="rounded-lg w-full md:w-96">
               <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] p-6">
-                <h1 class="text-[#133072] font-semibold">
-                  <ul class="list-disc">
-                  <li>Finanzas Personales</li>
-                    <li>Design Thinking</li> 
-                    <li>Model Business</li> 
-                    <li>Canvas Brainstorming</li> 
-                    <li>Storytelling</li>
-                  </ul>
+                <h1 class="text-[#133072] text-xl font-semibold">
+                  Estás a punto de entrar al universo de la
+                  <span class="text-white bg-[#133072]">educación digital</span>
                 </h1>
               </div>
-        </div>
-          </div>
-          <div>
-            <p class="text-[#133072] mt-2">Al igual que dinámicas que permiten que los estudiantes visualicen el mundo desde diferentes frentes, para explorarlo, conocerlo y mejorarlo.</p>
-          </div>
-      </section>
-      <section>
-        <div class="bg-white mt-4 p-6 rounded-lg">
-          <img class="mt-2 p-4" src="img/imagen_6.png">
-          <h1 class="text-[#133072] text-2xl font-semibold p-2">Tecnología e innovación</h1>
-          <h5 class="text-[#133072] p-2">Tenemos competencias especificas por grados</h5>
-            <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] p-4 mt-4 rounded-lg">
-            <h1 class="text-[#133072] text-center text-2xl font-semibold">Elementary school</h1>
-          </div>
-          <div class="bg-white mt-2 p-2 border-4 rounded-lg">
-            <h1 class="text-[#133072] text-center text-xl font-semibold">Robotica para todos</h1>
-          </div>
-          <div class="bg-white mt-2 p-2 border-4 rounded-lg">
-            <h1 class="text-[#133072] text-center">
-              Artefactos tecnológicos
-
-              Aprovechamiento de recursos
-
-              Transformación de la materia
-    
-              Programación (Coding)
-  
-              Impresión 3D
-            </h1>
-          </div>
-          <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] p-4 mt-6 rounded-lg">
-            <h1 class="text-[#133072] text-center text-2xl font-semibold">Middle school</h1>
-          </div>
-          <div class="bg-white mt-2 p-2 border-4 rounded-lg">
-            <h1 class="text-[#133072] text-center text-xl font-semibold">Robotica para todos</h1>
-          </div>
-          <div class="bg-white mt-2 p-2 border-4 rounded-lg">
-            <h1 class="text-[#133072] text-center">
-              Electrónica
-
-              Manejo de datos (Big data)
-              
-              Biomedicina
-              
-              Computación en la nube
-              
-              Criptomonedas y Blockchain
-            </h1>
-          </div>
-          <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] p-4 mt-6 rounded-lg">
-            <h1 class="text-[#133072] text-center text-2xl font-semibold">High school</h1>
-          </div>
-          <div class="bg-white mt-2 p-2 border-4 rounded-lg">
-            <h1 class="text-[#133072] text-center text-xl font-semibold">Robotica para todos</h1>
-          </div>
-          <div class="bg-white mt-2 p-2 border-4 rounded-lg">
-            <h1 class="text-[#133072] text-center">
-              Desarrollo de Apps - Videojuegos
-
-                Realidad virtual
-
-                Drones
-
-                IoT
-
-              Inteligencia Artificial y Machine Learning
-            </h1>
-          </div>
-          <div>
-            <img class="mt-8" src="img/imagen_7.png" width="100%">
-          </div>
-          <div class="bg-[#D5E6F7] rounded-b-lg">
-            <h1 class="text-[#133072] text-center text-2xl font-semibold">Incubadora de sueños, 
-              fábrica de realidades.</h1>
-              <p class="text-[#133072] p-4"> Con nuestra  <span class="font-semibold"> incubadora interna </span> apoyamos y aceleramos los proyectos disruptivos de nuestros estudiantes para llevarlos al siguiente nivel  <span class="font-semibold"> impactando positivamente sus comunidades.</span></p>
+              <div class="bg-white p-4 flex justify-center rounded-b-lg">
+                <img src="img/LOGO_GENUINE.svg" width="200px" class="mt-8" />
+              </div>
             </div>
-        </div>
-      </section>
-      <section>
-        <div class="bg-white rounded-t-lg mt-4 p-4 flex">
-          <img src="img/imagen_8.png"> <img src="img/imagen_9.png">
           </div>
-          <div class="bg-white rounded-b-lg p-4 relative">
-            <svg
-              onclick="showModal(this)" data-video="YPl9Dd-w1ms"
-                class="flex mx-auto absolute inset-x-0 inset-y-20"
-                width="41"
-                height="40"
-                viewBox="0 0 41 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+
+          <div class="absolute bottom-4 left-[25vw] md:left-[38vw] ">
+            <a
+              href="https://studyatgenuine.com/"
+              class="text-white font-bold"
+              target="_blank"
+            >
+              studyatgenuine.com</a
+            >
+          </div>
+        </section>
+        <section
+          class="bg-gradient-to-t from-white to-[#D5E6F7] p-2 rounded-lg mt-6 section-container"
+        >
+          <div class="flex flex-col md:flex-row">
+          <div class="bg-[#D5E6F7] p-6 mt-4 rounded-lg">
+            <h1 class="text-[#133072] text-xl font-semibold">
+              Nuestra misión en el mundo y lo que soñamos para tus hijos
+            </h1>
+          </div>
+
+          <div class="p-2">
+            <iframe
+              width="100%"
+              height="200"
+              src="https://www.youtube.com/embed/0IlUVfWThdo"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          </div>
+          <div class="flex flex-col md:flex-row">
+          <div class="border-4 border-[#133072] rounded-lg p-4 md:mr-4">
+            <img src="img/vision.png" />
+            <h1 class="text-[#133072] text-xl font-semibold">Nuestra visión</h1>
+            <p class="text-[#133072] leading-4">
+              Queremos educar a miles de niños y jóvenes con los más altos
+              estándares de calidad y pertinencia para que
+              <span class="font-semibold">descubran su felicidad </span> y que a
+              partir de sus competencias, sean agentes de cambio en sus regiones por
+              medio de
+              <span class="font-semibold"> la tecnología, la innovación</span> y el
+              <span class="font-semibold">emprendimiento.</span>
+            </p>
+          </div>
+          <div class="border-4 border-[#133072] rounded-lg p-4 mt-4 md:mt-0">
+            <img src="img/mision.png" />
+            <h1 class="text-[#133072] text-xl font-semibold">Nuestra misión</h1>
+            <p class="text-[#133072] leading-4">
+              <span class="font-semibold"> Educar, empoderar y conectar </span> a
+              nuestros estudiantes mediante experiencias de aprendizaje remoto que
+              trasciendan las fronteras geográficas e idiomáticas, para inspirarlos
+              a transformar el mundo a través de
+              <span class="font-semibold"
+                >la tecnología, la innovación y el emprendimiento.</span
               >
-                <path
-                  d="M20.5 0C9.47212 0 0.5 8.97212 0.5 20C0.5 31.0279 9.47212 40 20.5 40C31.5279 40 40.5 31.0279 40.5 20C40.5 8.97212 31.5279 0 20.5 0ZM27.6894 20.8942L16.6846 27.5423C16.5269 27.6368 16.3468 27.6876 16.163 27.6896C15.9791 27.6916 15.798 27.6446 15.6383 27.5535C15.4786 27.4624 15.346 27.3304 15.2541 27.1711C15.1622 27.0118 15.1143 26.831 15.1154 26.6471V13.3529C15.1143 13.169 15.1622 12.9882 15.2541 12.8289C15.346 12.6696 15.4786 12.5376 15.6383 12.4465C15.798 12.3554 15.9791 12.3084 16.163 12.3104C16.3468 12.3124 16.5269 12.3632 16.6846 12.4577L27.6894 19.1058C27.8428 19.1992 27.9696 19.3306 28.0576 19.4872C28.1455 19.6438 28.1917 19.8204 28.1917 20C28.1917 20.1796 28.1455 20.3562 28.0576 20.5128C27.9696 20.6694 27.8428 20.8008 27.6894 20.8942Z"
-                  fill="#D5ADFB"
-                />
-              </svg>
-            <img src="img/imagen_10.png" width="100%">
-            
+            </p>
           </div>
-      </section>
-      <section class="bg-white mt-4 rounded-lg">
+          </div>
+          <img class="block md:hidden" src="img/jet-pack.png" />
+        </section>
+        <section class="section-container">
+          <div class="bg-white rounded-lg mt-4">
+            <div class="p-4">
+              <h1 class="text-[#133072] text-xl font-semibold">¿Quiénes somos?</h1>
+              <p class="text-[#133072] leading-4">
+                Somos un colegio virtual privado estadounidense constituido y
+                registrado en el estado de
+                <span class="font-semibold">La Florida con el código 8822.</span>
+              </p>
+              <h3 class="text-[#133072] text-center font-semibold mt-6">
+                Consulta el registro legal aquí
+              </h3>
+              <a href="https://studyatgenuine.com/registro-legal/" target="_blank"
+                class="bg-[#133072] rounded-lg px-6 py-3 flex mx-auto mb-6 mt-2 w-40 text-white font-bold text-md text-center">
+                Registro legal
+            </a>
+              <div class="bg-[#D5ADFB] py-3 rounded-lg">
+                <h3
+                  class="text-center text-[#133072] font-semibold px-10 leading-5"
+                >
+                  Mira como encontrar el registro legal de Genuine
+                </h3>
+                <br />
+                <svg
+                onclick="showModal(this)" data-video="r0HVCFzrJnU"
+                  class="flex mx-auto"
+                  width="41"
+                  height="40"
+                  viewBox="0 0 41 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20.5 0C9.47212 0 0.5 8.97212 0.5 20C0.5 31.0279 9.47212 40 20.5 40C31.5279 40 40.5 31.0279 40.5 20C40.5 8.97212 31.5279 0 20.5 0ZM27.6894 20.8942L16.6846 27.5423C16.5269 27.6368 16.3468 27.6876 16.163 27.6896C15.9791 27.6916 15.798 27.6446 15.6383 27.5535C15.4786 27.4624 15.346 27.3304 15.2541 27.1711C15.1622 27.0118 15.1143 26.831 15.1154 26.6471V13.3529C15.1143 13.169 15.1622 12.9882 15.2541 12.8289C15.346 12.6696 15.4786 12.5376 15.6383 12.4465C15.798 12.3554 15.9791 12.3084 16.163 12.3104C16.3468 12.3124 16.5269 12.3632 16.6846 12.4577L27.6894 19.1058C27.8428 19.1992 27.9696 19.3306 28.0576 19.4872C28.1455 19.6438 28.1917 19.8204 28.1917 20C28.1917 20.1796 28.1455 20.3562 28.0576 20.5128C27.9696 20.6694 27.8428 20.8008 27.6894 20.8942Z"
+                    fill="white"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <img class="mt-4" src="img/imagen_2.png" width="100%" />
+            </div>
+          </div>
+          <section>
+            <div class="bg-white rounded-lg mt-4">
+              <div class="px-10">
+                <h1 class="text-[#133072] text-xl font-semibold p-4">
+                  Somos <br />
+                  del mundo
+                </h1>
+                <div class="border-4 border-[#F90052] p-2 mx-6 rounded-lg">
+                  <h1 class="text-[#F90052] text-xl font-semibold text-center">
+                    <span class="text-3xl"> +350 </span> <br />
+                    Estudiantes
+                  </h1>
+                </div>
+                <div class="border-4 border-[#D5ADFB] p-2 mt-4 mx-6 rounded-lg">
+                  <h1 class="text-[#D5ADFB] text-xl font-semibold text-center">
+                    <span class="text-3xl"> 28 </span> <br />
+                    Staff
+                  </h1>
+                </div>
+                <div class="border-4 border-[#133072] p-2 mt-4 mx-6 rounded-lg">
+                  <h1 class="text-[#133072] text-xl font-semibold text-center">
+                    <span class="text-3xl"> 44<br /> </span>
+                    Profesores
+                  </h1>
+                </div>
+              </div>
+              <div>
+                <img src="img/Mapa.png" />
+              </div>
+              <div class="bg-[#F90052] p-4">
+                <p class="text-white leading-5 font-bold">
+                  Colombia, Ecuador, Perú, México, Panamá, Costa Rica, Chile,
+                  Argentina, Estados Unidos, Emiratos Árabes, Brasil, República
+                  Dominicana, Irlanda, Canadá, España, Portugal, China, Italia.
+                </p>
+              </div>
+              <div class="bg-[#D5ADFB] p-4">
+                <p class="text-white leading-5 font-bold">
+                  Estados Unidos, Colombia, Perú, Brasil, Chile, México, Venezuela.
+                </p>
+              </div>
+              <div class="bg-[#133072] p-4 rounded-b-lg">
+                <p class="text-white leading-5 font-bold">
+                  Colombia, Sudáfrica, Filipinas, Chile, México, Singapur.
+                </p>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class="bg-white rounded-lg section-container">
+          <img class="mt-2" src="img/imagen_3.png" width="100%" />
+          <div class="p-6">
+            <h1 class="text-[#133072] text-2xl font-semibold">
+              Nuestra propuesta <br />
+              pedagógica
+            </h1>
+            <br />
+            <h3 class="text-[#133072]">
+              Se fundamenta en
+              <span class="font-semibold"> tres puntos fuertes:</span>
+            </h3>
+            <p class="text-[#133072] p-2">
+              1. Enseñanza para la comprensión -
+              <span class="font-semibold"> EPC </span>
+            </p>
+
+            <p class="text-[#133072] p-2">
+              2. Aprendizaje significativo a través de la gamificación y
+              ludificación. Logramos que nuestros maestros conecten con los
+              estudiantes y enseñen a través de nuestra
+              <span class="font-semibold">
+                Metodología E: Emocionar, enganchar y elevar
+              </span>
+              el conocimiento.
+            </p>
+            <p class="text-[#133072] p-2">
+              3. Formación de una
+              <span class="font-semibold"> cultura emprendedora </span> donde
+              encuentren problemas y generen ideas. Conocen, ejecutan, prueban e
+              iteran soluciones desde sus habilidades y pasiones.
+            </p>
+          </div>
+        </section>
+        <section class="mt-4 bg-white rounded-lg section-container">
+          <img src="img/imagen_4.png" width="100%" />
+          <div class="p-6">
+            <img class="mt-2" src="img/imagen_5.png" />
+            <h1 class="text-[#133072] text-2xl font-semibold mt-2">
+              Emprendimiento
+            </h1>
+            <p class="text-[#133072] mt-2">
+              A través de metodologías ágiles, formamos estudiantes con un
+              <span class="font-semibold">espíritu emprendedor,</span> con capacidad
+              de dar soluciones de base tecnológica a problemáticas reales.
+            </p>
+            <p class="text-[#133072] mt-2">
+              Fomentamos la expresión oral, la confianza en sí mismos, así como
+              contenidos en:
+            </p>
+            <div>
+              <div class="rounded-lg">
+                <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] p-6">
+                  <h1 class="text-[#133072] font-semibold">
+                    <ul class="list-disc">
+                    <li>Finanzas Personales</li>
+                      <li>Design Thinking</li> 
+                      <li>Model Business</li> 
+                      <li>Canvas Brainstorming</li> 
+                      <li>Storytelling</li>
+                    </ul>
+                  </h1>
+                </div>
+          </div>
+            </div>
+            <div>
+              <p class="text-[#133072] mt-2">Al igual que dinámicas que permiten que los estudiantes visualicen el mundo desde diferentes frentes, para explorarlo, conocerlo y mejorarlo.</p>
+            </div>
+        </section>
+        <section class="section-container">
+          <div class="bg-white mt-4 p-6 rounded-lg">
+            <img class="mt-2 p-4" src="img/imagen_6.png">
+            <h1 class="text-[#133072] text-2xl font-semibold p-2">Tecnología e innovación</h1>
+            <h5 class="text-[#133072] p-2">Tenemos competencias especificas por grados</h5>
+              <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] p-4 mt-4 rounded-lg">
+              <h1 class="text-[#133072] text-center text-2xl font-semibold">Elementary school</h1>
+            </div>
+            <div class="bg-white mt-2 p-2 border-4 rounded-lg">
+              <h1 class="text-[#133072] text-center text-xl font-semibold">Robotica para todos</h1>
+            </div>
+            <div class="bg-white mt-2 p-2 border-4 rounded-lg">
+              <h1 class="text-[#133072] text-center">
+                Artefactos tecnológicos
+
+                Aprovechamiento de recursos
+
+                Transformación de la materia
+      
+                Programación (Coding)
+    
+                Impresión 3D
+              </h1>
+            </div>
+            <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] p-4 mt-6 rounded-lg">
+              <h1 class="text-[#133072] text-center text-2xl font-semibold">Middle school</h1>
+            </div>
+            <div class="bg-white mt-2 p-2 border-4 rounded-lg">
+              <h1 class="text-[#133072] text-center text-xl font-semibold">Robotica para todos</h1>
+            </div>
+            <div class="bg-white mt-2 p-2 border-4 rounded-lg">
+              <h1 class="text-[#133072] text-center">
+                Electrónica
+
+                Manejo de datos (Big data)
+                
+                Biomedicina
+                
+                Computación en la nube
+                
+                Criptomonedas y Blockchain
+              </h1>
+            </div>
+            <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] p-4 mt-6 rounded-lg">
+              <h1 class="text-[#133072] text-center text-2xl font-semibold">High school</h1>
+            </div>
+            <div class="bg-white mt-2 p-2 border-4 rounded-lg">
+              <h1 class="text-[#133072] text-center text-xl font-semibold">Robotica para todos</h1>
+            </div>
+            <div class="bg-white mt-2 p-2 border-4 rounded-lg">
+              <h1 class="text-[#133072] text-center">
+                Desarrollo de Apps - Videojuegos
+
+                  Realidad virtual
+
+                  Drones
+
+                  IoT
+
+                Inteligencia Artificial y Machine Learning
+              </h1>
+            </div>
+            <div>
+              <img class="mt-8" src="img/imagen_7.png" width="100%">
+            </div>
+            <div class="bg-[#D5E6F7] rounded-b-lg">
+              <h1 class="text-[#133072] text-center text-2xl font-semibold">Incubadora de sueños, 
+                fábrica de realidades.</h1>
+                <p class="text-[#133072] p-4"> Con nuestra  <span class="font-semibold"> incubadora interna </span> apoyamos y aceleramos los proyectos disruptivos de nuestros estudiantes para llevarlos al siguiente nivel  <span class="font-semibold"> impactando positivamente sus comunidades.</span></p>
+              </div>
+          </div>
+        </section>
+        <section class="section-container">
+          <div class="bg-white rounded-t-lg mt-4 p-4 flex">
+            <img src="img/imagen_8.png"> <img src="img/imagen_9.png">
+            </div>
+            <div class="bg-white rounded-b-lg p-4 relative">
+              <svg
+                onclick="showModal(this)" data-video="YPl9Dd-w1ms"
+                  class="flex mx-auto absolute inset-x-0 inset-y-20"
+                  width="41"
+                  height="40"
+                  viewBox="0 0 41 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20.5 0C9.47212 0 0.5 8.97212 0.5 20C0.5 31.0279 9.47212 40 20.5 40C31.5279 40 40.5 31.0279 40.5 20C40.5 8.97212 31.5279 0 20.5 0ZM27.6894 20.8942L16.6846 27.5423C16.5269 27.6368 16.3468 27.6876 16.163 27.6896C15.9791 27.6916 15.798 27.6446 15.6383 27.5535C15.4786 27.4624 15.346 27.3304 15.2541 27.1711C15.1622 27.0118 15.1143 26.831 15.1154 26.6471V13.3529C15.1143 13.169 15.1622 12.9882 15.2541 12.8289C15.346 12.6696 15.4786 12.5376 15.6383 12.4465C15.798 12.3554 15.9791 12.3084 16.163 12.3104C16.3468 12.3124 16.5269 12.3632 16.6846 12.4577L27.6894 19.1058C27.8428 19.1992 27.9696 19.3306 28.0576 19.4872C28.1455 19.6438 28.1917 19.8204 28.1917 20C28.1917 20.1796 28.1455 20.3562 28.0576 20.5128C27.9696 20.6694 27.8428 20.8008 27.6894 20.8942Z"
+                    fill="#D5ADFB"
+                  />
+                </svg>
+              <img src="img/imagen_10.png" width="100%">
+              
+            </div>
+        </section>
+        <section class="bg-white mt-4 rounded-lg section-container">
         <div>
           <img src="img/imagen_11.png" width="100%">
         </div>
@@ -431,7 +458,7 @@
               </div>
         </div>
         </section>
-        <section class="bg-white mt-4 rounded-lg p-4">
+        <section class="bg-white mt-4 rounded-lg p-4 section-container">
         <div>
           <img src="img/imagen_13.jpg">
           <h1 class="text-[#133072] font-semibold text-2xl mt-2">Horario de clases</h1>
@@ -505,7 +532,7 @@
           </ul>
         </div>
         </section>
-        <section class="bg-white p-4 mt-4 rounded-lg">
+        <section class="bg-white p-4 mt-4 rounded-lg section-container">
           <div>
             <h1 class="text-[#133072] font-semibold text-2xl text-center">Tabla de equivalentes
               por país</h1>
@@ -519,15 +546,39 @@
           </a>
           </div>
         </section>
-        <section class="bg-white p-2 mt-4 rounded-lg">
-          <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] mt-4 p-6 rounded-lg">
-            <h1 class="text-[#133072] text-center font-semibold text-2xl"> Elementary School </h1>
-          </div>
-          <div class="mt-2">
-            <img src="img/imagen_14.png" width="100%"> 
-          </div>
+        <section class="section-container">
+          <section class="bg-white p-2 mt-4 rounded-lg">
+            <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] mt-4 p-6 rounded-lg">
+              <h1 class="text-[#133072] text-center font-semibold text-2xl"> Elementary School </h1>
+            </div>
+            <div class="mt-2">
+              <img src="img/imagen_14.png" width="100%"> 
+            </div>
+              <div class="border-2 border-[#133072] mt-2 p-2 rounded-lg ">
+                <h1 class="text-[#133072] text-center font-semibold text-lg"> 2nd - 5th <hr class="border-1 border-[#133072] w-40 flex mx-auto"> 25 horas semanales </h1>
+              </div>
+              <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] mt-2 p-2 rounded-lg">
+                <ul class="list-disc p-2">
+                  <li class="ml-5 text-[#133072]"> Science </li> 
+                  <li class="ml-5 text-[#133072]"> Mathematics</li>
+                  <li class="ml-5 text-[#133072]"> Social Studies</li>
+                  <li class="ml-5 text-[#133072]"> Be Genuine</li>
+                  <li class="ml-5 text-[#133072]"> English </li>
+                  <li class="ml-5 text-[#133072]"> Español </li>
+                  <li class="ml-5 text-[#133072]">Emprendimiento </li>
+                  <li class="ml-5 text-[#133072]"> Tecnología </li>
+                  <li class="ml-5 text-[#133072]"> <span class="font-semibold">Fine and performing arts</span> Music, dance, drama, visual arts-painting, drawing, print making, ceramics, photography. video, design, decorative art - theater </li>
+                  <li class="ml-5 text-[#133072]"> P.E.</li>
+                </ul>
+              </div>
+            <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] mt-10 p-4 rounded-lg">
+              <h1 class="text-[#133072] text-center font-semibold text-2xl"> Middle School </h1>
+            </div>
+            <div>
+              <img class="mt-2" src="img/imagen_15.png" width="100%">
+            </div>
             <div class="border-2 border-[#133072] mt-2 p-2 rounded-lg ">
-              <h1 class="text-[#133072] text-center font-semibold text-lg"> 2nd - 5th <hr class="border-1 border-[#133072] w-40 flex mx-auto"> 25 horas semanales </h1>
+              <h1 class="text-[#133072] text-center font-semibold text-lg"> 6th - 8th <hr class="border-1 border-[#133072] w-40 flex mx-auto"> 30 horas semanales </h1>
             </div>
             <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] mt-2 p-2 rounded-lg">
               <ul class="list-disc p-2">
@@ -540,64 +591,42 @@
                 <li class="ml-5 text-[#133072]">Emprendimiento </li>
                 <li class="ml-5 text-[#133072]"> Tecnología </li>
                 <li class="ml-5 text-[#133072]"> <span class="font-semibold">Fine and performing arts</span> Music, dance, drama, visual arts-painting, drawing, print making, ceramics, photography. video, design, decorative art - theater </li>
-                <li class="ml-5 text-[#133072]"> P.E.</li>
               </ul>
             </div>
-          <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] mt-10 p-4 rounded-lg">
-            <h1 class="text-[#133072] text-center font-semibold text-2xl"> Middle School </h1>
-          </div>
-          <div>
-            <img class="mt-2" src="img/imagen_15.png" width="100%">
-          </div>
-          <div class="border-2 border-[#133072] mt-2 p-2 rounded-lg ">
-            <h1 class="text-[#133072] text-center font-semibold text-lg"> 6th - 8th <hr class="border-1 border-[#133072] w-40 flex mx-auto"> 30 horas semanales </h1>
-          </div>
-          <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] mt-2 p-2 rounded-lg">
-            <ul class="list-disc p-2">
-              <li class="ml-5 text-[#133072]"> Science </li> 
-              <li class="ml-5 text-[#133072]"> Mathematics</li>
-              <li class="ml-5 text-[#133072]"> Social Studies</li>
-              <li class="ml-5 text-[#133072]"> Be Genuine</li>
-              <li class="ml-5 text-[#133072]"> English </li>
-              <li class="ml-5 text-[#133072]"> Español </li>
-              <li class="ml-5 text-[#133072]">Emprendimiento </li>
-              <li class="ml-5 text-[#133072]"> Tecnología </li>
-              <li class="ml-5 text-[#133072]"> <span class="font-semibold">Fine and performing arts</span> Music, dance, drama, visual arts-painting, drawing, print making, ceramics, photography. video, design, decorative art - theater </li>
-            </ul>
-          </div>
-          <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] mt-10 p-4 rounded-lg">
-            <h1 class="text-[#133072] text-center font-semibold text-2xl"> High School </h1>
-          </div>
-          <div>
-            <img class="mt-2" src="img/imagen_16.png" width="100%">
-          </div>
-          <div class="border-2 border-[#133072] mt-2 p-2 rounded-lg ">
-            <h1 class="text-[#133072] text-center font-semibold text-lg"> 9th - 12th <hr class="border-1 border-[#133072] w-40 flex mx-auto"> 30 horas semanales </h1>
-          </div>
-          <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] mt-2 p-2 rounded-lg">
-            <ul class="list-disc p-2">
-              <li class="ml-5 text-[#133072]"> Biology </li> 
-              <li class="ml-5 text-[#133072]"> Chemistry</li>
-              <li class="ml-5 text-[#133072]"> Physics</li>
-              <li class="ml-5 text-[#133072]"> Science Project</li>
-              <li class="ml-5 text-[#133072]"> Algebra (1 - 2) </li>
-              <li class="ml-5 text-[#133072]"> Precalculus </li>
-              <li class="ml-5 text-[#133072]"> Geometry </li>
-              <li class="ml-5 text-[#133072]"> Be Genuine </li>
-              <li class="ml-5 text-[#133072]"> English (1 - 4)</li>
-              <li class="ml-5 text-[#133072]">Emprendimiento </li>
-              <li class="ml-5 text-[#133072]"> Tecnología </li>
-              <li class="ml-5 text-[#133072]"> <span class="font-semibold"> Philosophy: Speech and Debate </span></li>
-              <li class="ml-5 text-[#133072]"> <span class="font-semibold"> World History </span></li>
-              <li class="ml-5 text-[#133072]"> <span class="font-semibold"> US History </span></li>
-              <li class="ml-5 text-[#133072]"> <span class="font-semibold"> US Government </span></li>
-              <li class="ml-5 text-[#133072]"> <span class="font-semibold"> Economics</span></li>
-            </ul>
-          </div>
-          <h6 class="text-[#133072] text-center text-sm">Adicional se deben <span class="font-semibold">certificar 
-            120 sesiones deportivas </span></h6>
+            <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] mt-10 p-4 rounded-lg">
+              <h1 class="text-[#133072] text-center font-semibold text-2xl"> High School </h1>
+            </div>
+            <div>
+              <img class="mt-2" src="img/imagen_16.png" width="100%">
+            </div>
+            <div class="border-2 border-[#133072] mt-2 p-2 rounded-lg ">
+              <h1 class="text-[#133072] text-center font-semibold text-lg"> 9th - 12th <hr class="border-1 border-[#133072] w-40 flex mx-auto"> 30 horas semanales </h1>
+            </div>
+            <div class="bg-gradient-to-t from-[#d5adfb] to-[#d5e6f7] mt-2 p-2 rounded-lg">
+              <ul class="list-disc p-2">
+                <li class="ml-5 text-[#133072]"> Biology </li> 
+                <li class="ml-5 text-[#133072]"> Chemistry</li>
+                <li class="ml-5 text-[#133072]"> Physics</li>
+                <li class="ml-5 text-[#133072]"> Science Project</li>
+                <li class="ml-5 text-[#133072]"> Algebra (1 - 2) </li>
+                <li class="ml-5 text-[#133072]"> Precalculus </li>
+                <li class="ml-5 text-[#133072]"> Geometry </li>
+                <li class="ml-5 text-[#133072]"> Be Genuine </li>
+                <li class="ml-5 text-[#133072]"> English (1 - 4)</li>
+                <li class="ml-5 text-[#133072]">Emprendimiento </li>
+                <li class="ml-5 text-[#133072]"> Tecnología </li>
+                <li class="ml-5 text-[#133072]"> <span class="font-semibold"> Philosophy: Speech and Debate </span></li>
+                <li class="ml-5 text-[#133072]"> <span class="font-semibold"> World History </span></li>
+                <li class="ml-5 text-[#133072]"> <span class="font-semibold"> US History </span></li>
+                <li class="ml-5 text-[#133072]"> <span class="font-semibold"> US Government </span></li>
+                <li class="ml-5 text-[#133072]"> <span class="font-semibold"> Economics</span></li>
+              </ul>
+            </div>
+            <h6 class="text-[#133072] text-center text-sm">Adicional se deben <span class="font-semibold">certificar 
+              120 sesiones deportivas </span></h6>
+          </section>
         </section>
-        <section class="bg-white rounded-lg mt-4">
+        <section class="bg-white rounded-lg mt-4 section-container">
           <div>
             <img src="img/imagen_17.png" width="100%">
           </div>
@@ -629,7 +658,7 @@
               </a>
           </div>
         </section>
-        <section class="bg-white rounded-lg mt-4 p-4">
+        <section class="bg-white rounded-lg mt-4 p-4 section-container">
           <div class="flex">
             <img src="img/imagen_19.png">
             <h1 class="text-[#133072] font-semibold text-3xl p-4">Plataforma</h1>
@@ -652,7 +681,7 @@
             <img src="img/image_20.png" width="100%">
           </div>
         </section>
-        <section class="bg-white rounded-lg mt-4">
+        <section class="bg-white rounded-lg mt-4 section-container">
           <div>
           <img src="img/imagen_21.png" width="100%"> 
           </div>
@@ -692,7 +721,7 @@
             </ul>
           </div>
         </section>
-        <section class="bg-gradient-to-t from-[#D5ADFB] to-[#D5E6F7] rounded-lg mt-4 p-4">
+        <section class="bg-gradient-to-t from-[#D5ADFB] to-[#D5E6F7] rounded-lg mt-4 p-4 section-container">
           <div class="flex bg-white rounded-lg p-4">
           <h1 class="text-[#133072] font-semibold text-2xl">¿Qué es</h1>
           <svg class="flex my-auto ml-1" width="160" height="32" viewBox="0 0 160 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -756,49 +785,49 @@
             <p class="text-[#133072] text-sm text-center">Para poder aplicar la propuesta pedagógica y el enfoque académico de Genuine Digital School, los Tech Clubs facilitan las definiciones y requisitos de una estructura funcional y dinámica para la puesta práctica de un plan de estudios apropiado, dinámicas de cosntrucción de aprendizaje innovadoras y la plataforma tecnológica que facilite la enseñanza dentro de espacios físicos seguros y amigables </p>
           </div>
         </section>
-        <section class="bg-white rounded-lg mt-4 ">
-        <div class="p-4">
-          <img src="img/Frame_1.jpg">
-          <h1 class="text-[#133072] font-semibold text-2xl mt-2">Testimonios de Familias Genuine</h1> 
-          <h1 class="text-[#133072] mt-2">Esto dicen nuestros  <span class="font-semibold"> padres</span></h1>
-          <div class="relative">
-            <svg
-              onclick="showModal(this)" data-video="OCDp7Z6fxjA"
-                class="flex mx-auto absolute inset-x-0 inset-y-20"
-                width="41"
-                height="40"
-                viewBox="0 0 41 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M20.5 0C9.47212 0 0.5 8.97212 0.5 20C0.5 31.0279 9.47212 40 20.5 40C31.5279 40 40.5 31.0279 40.5 20C40.5 8.97212 31.5279 0 20.5 0ZM27.6894 20.8942L16.6846 27.5423C16.5269 27.6368 16.3468 27.6876 16.163 27.6896C15.9791 27.6916 15.798 27.6446 15.6383 27.5535C15.4786 27.4624 15.346 27.3304 15.2541 27.1711C15.1622 27.0118 15.1143 26.831 15.1154 26.6471V13.3529C15.1143 13.169 15.1622 12.9882 15.2541 12.8289C15.346 12.6696 15.4786 12.5376 15.6383 12.4465C15.798 12.3554 15.9791 12.3084 16.163 12.3104C16.3468 12.3124 16.5269 12.3632 16.6846 12.4577L27.6894 19.1058C27.8428 19.1992 27.9696 19.3306 28.0576 19.4872C28.1455 19.6438 28.1917 19.8204 28.1917 20C28.1917 20.1796 28.1455 20.3562 28.0576 20.5128C27.9696 20.6694 27.8428 20.8008 27.6894 20.8942Z"
-                  fill="#D5ADFB"
-                />
-              </svg>
-          <img class="mt-2" src="img/imagen_26.png" width="100%">
+        <section class="bg-white rounded-lg mt-4 section-container">
+          <div class="p-4">
+            <img src="img/Frame_1.jpg">
+            <h1 class="text-[#133072] font-semibold text-2xl mt-2">Testimonios de Familias Genuine</h1> 
+            <h1 class="text-[#133072] mt-2">Esto dicen nuestros  <span class="font-semibold"> padres</span></h1>
+            <div class="relative">
+              <svg
+                onclick="showModal(this)" data-video="OCDp7Z6fxjA"
+                  class="flex mx-auto absolute inset-x-0 inset-y-20"
+                  width="41"
+                  height="40"
+                  viewBox="0 0 41 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20.5 0C9.47212 0 0.5 8.97212 0.5 20C0.5 31.0279 9.47212 40 20.5 40C31.5279 40 40.5 31.0279 40.5 20C40.5 8.97212 31.5279 0 20.5 0ZM27.6894 20.8942L16.6846 27.5423C16.5269 27.6368 16.3468 27.6876 16.163 27.6896C15.9791 27.6916 15.798 27.6446 15.6383 27.5535C15.4786 27.4624 15.346 27.3304 15.2541 27.1711C15.1622 27.0118 15.1143 26.831 15.1154 26.6471V13.3529C15.1143 13.169 15.1622 12.9882 15.2541 12.8289C15.346 12.6696 15.4786 12.5376 15.6383 12.4465C15.798 12.3554 15.9791 12.3084 16.163 12.3104C16.3468 12.3124 16.5269 12.3632 16.6846 12.4577L27.6894 19.1058C27.8428 19.1992 27.9696 19.3306 28.0576 19.4872C28.1455 19.6438 28.1917 19.8204 28.1917 20C28.1917 20.1796 28.1455 20.3562 28.0576 20.5128C27.9696 20.6694 27.8428 20.8008 27.6894 20.8942Z"
+                    fill="#D5ADFB"
+                  />
+                </svg>
+            <img class="mt-2" src="img/imagen_26.png" width="100%">
+            </div>
+            <h1 class="text-[#133072] mt-4">Y nuestros <span class="font-semibold">estudiantes</span></h1> 
+            <div class="relative">
+              <svg
+              onclick="showModal(this)" data-video="mPpWHdC1Ft8"
+              class="flex mx-auto absolute inset-x-0 inset-y-20"
+              width="41"
+              height="40"
+              viewBox="0 0 41 40"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.5 0C9.47212 0 0.5 8.97212 0.5 20C0.5 31.0279 9.47212 40 20.5 40C31.5279 40 40.5 31.0279 40.5 20C40.5 8.97212 31.5279 0 20.5 0ZM27.6894 20.8942L16.6846 27.5423C16.5269 27.6368 16.3468 27.6876 16.163 27.6896C15.9791 27.6916 15.798 27.6446 15.6383 27.5535C15.4786 27.4624 15.346 27.3304 15.2541 27.1711C15.1622 27.0118 15.1143 26.831 15.1154 26.6471V13.3529C15.1143 13.169 15.1622 12.9882 15.2541 12.8289C15.346 12.6696 15.4786 12.5376 15.6383 12.4465C15.798 12.3554 15.9791 12.3084 16.163 12.3104C16.3468 12.3124 16.5269 12.3632 16.6846 12.4577L27.6894 19.1058C27.8428 19.1992 27.9696 19.3306 28.0576 19.4872C28.1455 19.6438 28.1917 19.8204 28.1917 20C28.1917 20.1796 28.1455 20.3562 28.0576 20.5128C27.9696 20.6694 27.8428 20.8008 27.6894 20.8942Z"
+                fill="#D5ADFB"
+              />
+            </svg>
+            <img class="mt-2" src="img/image_27.png" width="100%">
+            </div>
           </div>
-          <h1 class="text-[#133072] mt-4">Y nuestros <span class="font-semibold">estudiantes</span></h1> 
-          <div class="relative">
-            <svg
-            onclick="showModal(this)" data-video="mPpWHdC1Ft8"
-            class="flex mx-auto absolute inset-x-0 inset-y-20"
-            width="41"
-            height="40"
-            viewBox="0 0 41 40"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M20.5 0C9.47212 0 0.5 8.97212 0.5 20C0.5 31.0279 9.47212 40 20.5 40C31.5279 40 40.5 31.0279 40.5 20C40.5 8.97212 31.5279 0 20.5 0ZM27.6894 20.8942L16.6846 27.5423C16.5269 27.6368 16.3468 27.6876 16.163 27.6896C15.9791 27.6916 15.798 27.6446 15.6383 27.5535C15.4786 27.4624 15.346 27.3304 15.2541 27.1711C15.1622 27.0118 15.1143 26.831 15.1154 26.6471V13.3529C15.1143 13.169 15.1622 12.9882 15.2541 12.8289C15.346 12.6696 15.4786 12.5376 15.6383 12.4465C15.798 12.3554 15.9791 12.3084 16.163 12.3104C16.3468 12.3124 16.5269 12.3632 16.6846 12.4577L27.6894 19.1058C27.8428 19.1992 27.9696 19.3306 28.0576 19.4872C28.1455 19.6438 28.1917 19.8204 28.1917 20C28.1917 20.1796 28.1455 20.3562 28.0576 20.5128C27.9696 20.6694 27.8428 20.8008 27.6894 20.8942Z"
-              fill="#D5ADFB"
-            />
-          </svg>
-          <img class="mt-2" src="img/image_27.png" width="100%">
-          </div>
-        </div>
         </section>
-        <section class="bg-white rounded-lg mt-4 p-4">
+        <section class="bg-white rounded-lg mt-4 p-4 section-container">
           <div>
             <img class="flex mx-auto" src="img/Vector.png">
           </div>
@@ -1137,58 +1166,61 @@
                         Aquí
                   </a>
         </section>
-        <section class="bg-white rounded-lg mt-4 p-4">
-          <div class="text-[#133072] font-semibold text-2xl text-center mt-2">
-            <h1>Proceso de admisión</h1>
+        <section class="section-container">
+          <section class="bg-white rounded-lg mt-4 p-4 ">
+            <div class="text-[#133072] font-semibold text-2xl text-center mt-2">
+              <h1>Proceso de admisión</h1>
+            </div>
+            <div class="bg-[#D5E6F7] p-4 text-[#133072] rounded-lg">
+              <img src="img/img39.png">
+              <p class="font-semibold text-xl mt-4">Paso 01</p>
+              <p>Diligencia el formulario de <span class="font-semibold"> registro de admisiones</span></p>
+              <a href="https://almahub.co/admisiones" target="_blank"
+                class="bg-[#133072] rounded-lg px-5 py-3 flex mx-auto mb-8 mt-4 w-56 text-white font-bold">
+                Formulario de registro         
+            </a>
+            </div>
+            <div class="bg-[#D5DEF8] p-4 text-[#133072] rounded-lg mt-4">
+              <img src="img/img40.png">
+              <p class="font-semibold text-xl mt-4">Paso 02</p>
+              <p>Pagar<span class="font-semibold"> pruebas de admisión</span></p>
+            </div>
+            <div class="bg-[#D5D6F8] p-4 text-[#133072] rounded-lg mt-4">
+              <img src="img/img39.png">
+              <p class="font-semibold text-xl mt-4">Paso 03</p>
+              <p>Diligencia el<span class="font-semibold"> formulario académico y psicología</span></p>
+            </div>
+            <div class="bg-[#D5CEF9] p-4 text-[#133072] rounded-lg mt-4">
+              <img src="img/img41.png">
+              <p class="font-semibold text-xl mt-4">Paso 04</p>
+              <p>Agendar<span class="font-semibold"> pruebas diagnósticas</span></p>
+            </div>
+            <div class="bg-[#D5C5F9] p-4 text-[#133072] rounded-lg mt-4">
+              <img src="img/img42.png">
+              <p class="font-semibold text-xl mt-4">Paso 05</p>
+              <p>Entrega de<span class="font-semibold"> resultados</span></p>
+            </div>
+            <div class="bg-[#D5ADFB] p-4 text-[#133072] rounded-lg mt-4">
+              <img src="img/img43.png">
+              <p class="font-semibold text-xl mt-4">Paso 06</p>
+              <p>Pagar<span class="font-semibold">orden de matrícula y firma del contrato en la plataforma Almahub</span></p>
+            </div>
+          </section>
+          <section class="mt-4 bg-white rounded-lg" >
+          <div>
+            <img src="img/img44.png" width="100%">
           </div>
-          <div class="bg-[#D5E6F7] p-4 text-[#133072] rounded-lg">
-            <img src="img/img39.png">
-            <p class="font-semibold text-xl mt-4">Paso 01</p>
-            <p>Diligencia el formulario de <span class="font-semibold"> registro de admisiones</span></p>
-            <a href="https://almahub.co/admisiones" target="_blank"
-              class="bg-[#133072] rounded-lg px-5 py-3 flex mx-auto mb-8 mt-4 w-56 text-white font-bold">
-              Formulario de registro         
-          </a>
+        
+          <div class="bg-gradient-to-t from-[#D5ADFB] to-[#D5E6F7] rounded-lg p-4 mt-4 mx-8">
+            <h1 class="text-[#133072] text-center text-xl"><span class="font-semibold text-2xl"> ¡Gracias! </span> </h1>
           </div>
-          <div class="bg-[#D5DEF8] p-4 text-[#133072] rounded-lg mt-4">
-            <img src="img/img40.png">
-            <p class="font-semibold text-xl mt-4">Paso 02</p>
-            <p>Pagar<span class="font-semibold"> pruebas de admisión</span></p>
+          <div class="mt-8 text-[#133072] font-semibold text-center">
+            <img class="flex mx-auto" src="img/LOGO_GENUINE.svg" width="50%">
+            <p>studyatgenuine.com</p>
           </div>
-          <div class="bg-[#D5D6F8] p-4 text-[#133072] rounded-lg mt-4">
-            <img src="img/img39.png">
-            <p class="font-semibold text-xl mt-4">Paso 03</p>
-            <p>Diligencia el<span class="font-semibold"> formulario académico y psicología</span></p>
-          </div>
-          <div class="bg-[#D5CEF9] p-4 text-[#133072] rounded-lg mt-4">
-            <img src="img/img41.png">
-            <p class="font-semibold text-xl mt-4">Paso 04</p>
-            <p>Agendar<span class="font-semibold"> pruebas diagnósticas</span></p>
-          </div>
-          <div class="bg-[#D5C5F9] p-4 text-[#133072] rounded-lg mt-4">
-            <img src="img/img42.png">
-            <p class="font-semibold text-xl mt-4">Paso 05</p>
-            <p>Entrega de<span class="font-semibold"> resultados</span></p>
-          </div>
-          <div class="bg-[#D5ADFB] p-4 text-[#133072] rounded-lg mt-4">
-            <img src="img/img43.png">
-            <p class="font-semibold text-xl mt-4">Paso 06</p>
-            <p>Pagar<span class="font-semibold">orden de matrícula y firma del contrato en la plataforma Almahub</span></p>
-          </div>
+          </section>
         </section>
-        <section class="mt-4 bg-white rounded-lg" >
-        <div>
-          <img src="img/img44.png" width="100%">
-        </div>
-      
-        <div class="bg-gradient-to-t from-[#D5ADFB] to-[#D5E6F7] rounded-lg p-4 mt-4 mx-8">
-          <h1 class="text-[#133072] text-center text-xl"><span class="font-semibold text-2xl"> ¡Gracias! </span> </h1>
-        </div>
-        <div class="mt-8 text-[#133072] font-semibold text-center">
-          <img class="flex mx-auto" src="img/LOGO_GENUINE.svg" width="50%">
-          <p>studyatgenuine.com</p>
-        </div>
-        </section>
+
       </div>
       <div class="w-[45%] mx-4 hidden md:block" id="menu">
         <div class="bg-white p-2 rounded-lg">
@@ -1203,7 +1235,7 @@
               </svg>
           </div>
         <ul class="navbar-nav nav nav-pills flex-column text-[#133072]">
-          <li class="nav-item active">
+          <li class="nav-item active my-2">
             <a
               class="nav-link text-md-start"
               aria-current="page"
@@ -1213,7 +1245,7 @@
               Inicio
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-2">
             <a
               class="nav-link text-md-start"
               aria-current="page"
@@ -1221,7 +1253,7 @@
               Manifiesto GE
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-2">
             <a
               class="nav-link text-md-start"
               aria-current="page"
@@ -1229,7 +1261,7 @@
               Nuestra propuesta pedagógica
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-2">
             <a
               class="nav-link text-md-start"
               aria-current="page"
@@ -1237,7 +1269,7 @@
               Emprendimiento
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-2">
             <a
               class="nav-link text-md-start"
               aria-current="page"
@@ -1245,7 +1277,7 @@
               Tecnología e innovación
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-2">
             <a
               class="nav-link text-md-start"
               aria-current="page"
@@ -1253,7 +1285,7 @@
               Demo Day
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-2">
             <a
               class="nav-link text-md-start"
               aria-current="page"
@@ -1261,7 +1293,7 @@
               Inglés sin fronteras
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-2">
             <a
               class="nav-link text-md-start"
               aria-current="page"
@@ -1269,7 +1301,7 @@
               Horario de clases
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-2">
             <a
               class="nav-link text-md-start"
               aria-current="page"
@@ -1277,7 +1309,7 @@
               Equivalentes por país
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-2">
             <a
               class="nav-link text-md-start"
               aria-current="page"
@@ -1285,7 +1317,7 @@
               Colegio virtual
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-2">
             <a
               class="nav-link text-md-start"
               aria-current="page"
@@ -1293,7 +1325,7 @@
               Requisitos para la titulación
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-2">
             <a
               class="nav-link text-md-start"
               aria-current="page"
@@ -1301,7 +1333,7 @@
               Plataforma
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item my-2">
             <a
               class="nav-link text-md-start"
               aria-current="page"
@@ -1309,41 +1341,38 @@
               ¿Por qué somos diferentes?
             </a>
           </li>
-            <li class="nav-item">
-              <a
-                class="nav-link text-md-start"
-                aria-current="page"
-                href="javascript:void(0)">
-                ¿Qué es Tech Clubs by GE?
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link text-md-start"
-                aria-current="page"
-                href="javascript:void(0)">
-                Testimonios de familias GE
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link text-md-start"
-                aria-current="page"
-                href="javascript:void(0)">
-                Inversión educatva 
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link text-md-start"
-                aria-current="page"
-                href="javascript:void(0)">
-                Proceso de admisión
-              </a>
-            </li>
-    
-  
-
+          <li class="nav-item my-2">
+            <a
+              class="nav-link text-md-start"
+              aria-current="page"
+              href="javascript:void(0)">
+              ¿Qué es Tech Clubs by GE?
+            </a>
+          </li>
+          <li class="nav-item my-2">
+            <a
+              class="nav-link text-md-start"
+              aria-current="page"
+              href="javascript:void(0)">
+              Testimonios de familias GE
+            </a>
+          </li>
+          <li class="nav-item my-2">
+            <a
+              class="nav-link text-md-start"
+              aria-current="page"
+              href="javascript:void(0)">
+              Inversión educatva 
+            </a>
+          </li>
+          <li class="nav-item my-2">
+            <a
+              class="nav-link text-md-start"
+              aria-current="page"
+              href="javascript:void(0)">
+              Proceso de admisión
+            </a>
+          </li>
         </ul>
       </div>
       </div>
