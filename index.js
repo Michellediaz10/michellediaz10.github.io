@@ -65,23 +65,31 @@ function mostrarSeccionActiva(current_positon){
 
 
 function nextStep(){
+  quitarElementoActivo()
   let sections = document.getElementsByClassName("section-container");
   let max= sections.length -1;
+  let nav_links = document.getElementsByClassName("nav-item")
   if (current_positon >=max){
     mostrarSeccionActiva(max)
+    nav_links[max].classList.add("active")
   }else{
     current_positon = current_positon + 1
     mostrarSeccionActiva(current_positon)
+    nav_links[current_positon].classList.add("active")
   }
 
 }
 
 function previousStep(){
+  quitarElementoActivo()
+  let nav_links = document.getElementsByClassName("nav-item")
   if (current_positon <= 0){
     mostrarSeccionActiva(0)
+    nav_links[0].classList.add("active")
   }else{
     current_positon = current_positon - 1
     mostrarSeccionActiva(current_positon)
+    nav_links[current_positon].classList.add("active")
   }
 
 }
