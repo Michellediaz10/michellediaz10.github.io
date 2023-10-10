@@ -94,7 +94,31 @@ function previousStep(){
 
 }
 
+var current_video_position = 0
+
+var videos = [
+  '<iframe class="w-[30vw] md:w-[50vw] h-auto md:h-[70vh] " src="https://www.youtube.com/embed/OCDp7Z6fxjA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+  '<iframe class="w-[30vw] md:w-[50vw] h-auto md:h-[70vh] " src="https://www.youtube.com/embed/mPpWHdC1Ft8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+]
+
+function nextVideoCarousel(){
+  current_video_position += 1;
+  if(current_video_position > videos.length){
+    current_video_position = 0
+  }
+  document.getElementById("videos").innerHTML = videos[current_video_position]
+}
+
+function beforeVideoCarousel(){
+  current_video_position -= 1;
+  if(current_video_position < 0){
+    current_video_position = 0
+  }
+  document.getElementById("videos").innerHTML = videos[current_video_position]
+}
+
 document.addEventListener("DOMContentLoaded",function(){
+    document.getElementById("videos").innerHTML = videos[current_video_position]
     if (window.innerWidth > 900 ) {
       mostrarSeccionActiva(0)
     }
