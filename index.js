@@ -103,7 +103,7 @@ var videos = [
 
 function nextVideoCarousel(){
   current_video_position += 1;
-  if(current_video_position > videos.length){
+  if(current_video_position > videos.length -1){
     current_video_position = 0
   }
   document.getElementById("videos").innerHTML = videos[current_video_position]
