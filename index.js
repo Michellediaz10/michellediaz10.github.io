@@ -37,6 +37,10 @@ function closeMenu(){
 
   document.getElementById("menu-inicial").style.display = "flex"
   document.getElementById("sliders").style.display = "flex"
+  let navegators = document.getElementsByClassName("navegator")
+  for (let i = 0; i < navegators.length; i++) {
+    navegators[i].style.display = "block"
+  }
 }
 
 function showMenu(){
@@ -44,6 +48,10 @@ function showMenu(){
   menu.style.display = "block"
   document.getElementById("menu-inicial").style.display = "none"
   document.getElementById("sliders").style.display = "none"
+  let navegators = document.getElementsByClassName("navegator")
+  for (let i = 0; i < navegators.length; i++) {
+    navegators[i].style.display = "none"
+  }
 }
 function quitarElementoActivo(){
   let nav_links = document.getElementsByClassName("nav-item");
@@ -56,8 +64,10 @@ function mostrarSeccionActiva(current_positon){
   let sections = document.getElementsByClassName("section-container");
   for (let i = 0; i < sections.length; i++) {
     sections[i].classList.add("hidden")
+    sections[i].classList.remove("elementToFadeInAndOut") 
 
     if(current_positon == i) {
+      sections[i].classList.add("elementToFadeInAndOut")
       sections[i].classList.remove("hidden")
     }
   }
