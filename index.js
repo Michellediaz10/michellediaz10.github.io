@@ -108,7 +108,14 @@ var current_video_position = 0
 
 var videos = [
   '<iframe class="w-[30vw] md:w-[50vw] h-auto md:h-[70vh] " src="https://www.youtube.com/embed/OCDp7Z6fxjA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+  '<iframe class="w-[30vw] md:w-[50vw] h-auto md:h-[70vh] " src="https://www.youtube.com/embed/wBOHk3Hs1-A?si=XQJij1TQvKaLA_rd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
   '<iframe class="w-[30vw] md:w-[50vw] h-auto md:h-[70vh] " src="https://www.youtube.com/embed/mPpWHdC1Ft8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+]
+
+var video_title = [
+  'Siente la experiencia <span class="font-bold">Genuine</span>',
+  'Conoce a nuestros <span class="font-bold">padres</span>',
+  'y a nuestros <span class="font-bold">estudiante</span>',
 ]
 
 function nextVideoCarousel(){
@@ -116,14 +123,16 @@ function nextVideoCarousel(){
   if(current_video_position > videos.length -1){
     current_video_position = 0
   }
+  document.getElementById("text-slider").innerHTML = video_title[current_video_position]
   document.getElementById("videos").innerHTML = videos[current_video_position]
 }
 
 function beforeVideoCarousel(){
   current_video_position -= 1;
   if(current_video_position < 0){
-    current_video_position = 0
+    current_video_position = 2
   }
+  document.getElementById("text-slider").innerHTML = video_title[current_video_position]
   document.getElementById("videos").innerHTML = videos[current_video_position]
 }
 
